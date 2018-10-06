@@ -1,11 +1,11 @@
-package br.edu.cefsa.ftt.test;
+package br.edu.cefsa.ftt.teste;
 
 import java.sql.Connection;
 import java.util.Date;
 
 import br.com.cefsa.ftt.util.DbUtil;
 
-public class ConnectionTest {
+public class TesteConexao {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -13,7 +13,7 @@ public class ConnectionTest {
 			Connection connection = DbUtil.getConnection();
 			
 			if (connection != null) {
-				System.out.println("Connected! " + String.valueOf(new Date()));
+				System.out.println("Conectado! " + String.valueOf(new Date()));
 			}
 		} catch (Exception e) {
 			System.out.println(e);
