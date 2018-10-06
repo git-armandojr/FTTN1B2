@@ -15,7 +15,7 @@ public class DbUtil {
             try {
 
                 String driver = "com.mysql.cj.jdbc.Driver";
-                String url = "jdbc:mysql://localhost:3306/ftt?useTimezone=true&serverTimezone=UTC&useSSL=false";
+                String url = "jdbc:mysql://armandojr.ddns.net:3306/ftt?useTimezone=true&serverTimezone=UTC&useSSL=false";
                 String user = "scott";
                 String password = "tiger";
             	
