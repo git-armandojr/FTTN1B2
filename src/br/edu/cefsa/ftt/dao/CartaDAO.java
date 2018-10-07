@@ -100,7 +100,7 @@ public class CartaDAO {
         }
     } //updateCarta
 	
-public List<CartaBEAN> getAllPeoples() throws MyException {
+	public List<CartaBEAN> getAllCartas() throws MyException {
         
     	List<CartaBEAN> cartas = new ArrayList<CartaBEAN>();
         
@@ -143,4 +143,40 @@ public List<CartaBEAN> getAllPeoples() throws MyException {
 
         return cartas;
     } //getAllCartas
+	
+	public CartaBEAN getCartaById(int codigo) throws MyException {
+
+		CartaBEAN carta = new CartaBEAN();
+        
+    	try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("SELECT * FROM PEOPLE WHERE ID=?");
+            
+            preparedStatement.setLong(1, codigo);
+            ResultSet rs = preparedStatement.executeQuery();
+           
+            if (!rs.next()) {
+            	String message = "Código da carta " + codigo + " não encontrado!";
+            	
+            	throw new MyException(message);
+            }            
+            else {
+            	carta.setCodigo(rs.getInt("codigo"));
+                carta.setNome(rs.getString("nome"));
+                carta.setAtaque(rs.getInt("ataque"));
+                carta.setDefesa(rs.getInt("defesa"));
+                carta.setFoto(rs.getBlob("foto"));    
+                
+                TipoBEAN tipo = new TipoDAO().getTipoById(rs.getInt("tipo"));                
+                carta.setTipo(tipo);                
+                
+                carta.setAtributo(AtributoENUM.valueOf(rs.getString("atributo")));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return carta;
+    } //getPeopleById
 }

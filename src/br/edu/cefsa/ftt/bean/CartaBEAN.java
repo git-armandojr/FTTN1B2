@@ -41,6 +41,13 @@ public class CartaBEAN {
 		this.codigo = codigo;
 	}
 
+	public void setCodigo(String codigo) {
+		if (codigo != null)
+		   this.codigo = Integer.valueOf(codigo);
+		else
+		   this.codigo = 0;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
