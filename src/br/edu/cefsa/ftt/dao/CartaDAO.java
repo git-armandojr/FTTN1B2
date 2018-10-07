@@ -132,7 +132,7 @@ public List<CartaBEAN> getAllPeoples() throws MyException {
             }
             
             if (!found) {
-            	String message = "No PEOPLE data found!";
+            	String message = "Nenhuma carta disponível!";
             	
             	throw new MyException(message);
 			}
