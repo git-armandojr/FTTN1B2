@@ -1,4 +1,4 @@
-package br.com.cefsa.ftt.util;
+package br.edu.cefsa.ftt.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
