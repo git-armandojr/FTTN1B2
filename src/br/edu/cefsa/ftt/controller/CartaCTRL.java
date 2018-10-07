@@ -17,8 +17,6 @@ import com.google.gson.JsonObject;
 
 import br.edu.cefsa.ftt.bean.CartaBEAN;
 import br.edu.cefsa.ftt.dao.CartaDAO;
-import br.edu.cefsa.ftt.ec.dao.BrandDao;
-import br.edu.cefsa.ftt.ec.model.Brand;
 
 /**
  * Servlet implementation class CartaCTRL
