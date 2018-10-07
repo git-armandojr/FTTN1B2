@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import br.edu.cefsa.ftt.bean.CartaBEAN;
-import br.edu.cefsa.ftt.ec.model.Model;
 import br.edu.cefsa.ftt.util.DbUtil;
 
 public class CartaDAO {
@@ -27,14 +26,15 @@ public class CartaDAO {
             preparedStatement.setInt(2, carta.getAtaque());
             preparedStatement.setInt(3, carta.getDefesa());
             preparedStatement.setBinaryStream(4, carta.getFoto());
-            
+            preparedStatement.setInt(5, carta.getTipo().getCodigo());
+            preparedStatement.setInt(6, carta.getAtributo().getCodigo());            
             
             preparedStatement.executeUpdate();            
 
         } catch (SQLException e) {
             e.printStackTrace();
             
-            throw new ArithmeticException("ModelDao: addModel: " + e.getMessage()); 
+            throw new ArithmeticException("CartaDao: addCarta: " + e.getMessage()); 
         }
-    } //addModel
+    } //addCarta
 }
