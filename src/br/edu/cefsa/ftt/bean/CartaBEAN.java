@@ -33,6 +33,11 @@ public class CartaBEAN {
 
 
 
+	public CartaBEAN(String codigo, String nome, String ataque, String defesa, String foto,
+			String tipo, String atributo) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -63,6 +68,13 @@ public class CartaBEAN {
 	public void setAtaque(int ataque) {
 		this.ataque = ataque;
 	}
+	
+	public void setAtaque(String ataque) {
+		if (ataque != null)
+		   this.ataque = Integer.valueOf(ataque);
+		else
+		   this.ataque = 0;
+	}
 
 	public int getDefesa() {
 		return defesa;
@@ -70,6 +82,13 @@ public class CartaBEAN {
 
 	public void setDefesa(int defesa) {
 		this.defesa = defesa;
+	}
+	
+	public void setDefesa(String defesa) {
+		if (defesa != null)
+		   this.defesa = Integer.valueOf(defesa);
+		else
+		   this.defesa = 0;
 	}
 
 	public Blob getFoto() {
