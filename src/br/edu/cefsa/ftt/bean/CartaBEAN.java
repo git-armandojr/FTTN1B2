@@ -2,84 +2,87 @@ package br.edu.cefsa.ftt.bean;
 
 public class CartaBEAN {
 	
-	private byte[] Foto; // Fotos são armazenadas no banco através de array de bytes.
-    private int Codigo;
-    private TipoBEAN Tipo; //Fará referência a uma outra tabela, categoriza a carta
-    private String Nome;
-    private int Ataque;
-    private int Defesa;
-    private AtributoBEAN Atributo; // Referenciado em outra tabela do banco
+	private int codigo;
+    private String nome;
+    private int ataque;
+    private int defesa;
+    private byte[] foto; // Fotos são armazenadas no banco através de array de bytes.
+    private TipoBEAN tipo; //Fará referência a uma outra tabela, categoriza a carta
+    private AtributoBEAN atributo; // Referenciado em outra tabela do banco
 	
     public CartaBEAN() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
+	}   
 
-	public CartaBEAN(byte[] foto, int codigo, TipoBEAN tipo, String nome, int ataque, int defesa,
+	public CartaBEAN(int codigo, String nome, int ataque, int defesa, byte[] foto, TipoBEAN tipo,
 			AtributoBEAN atributo) {
 		super();
-		Foto = foto;
-		Codigo = codigo;
-		Tipo = tipo;
-		Nome = nome;
-		Ataque = ataque;
-		Defesa = defesa;
-		Atributo = atributo;
+		this.codigo = codigo;
+		this.nome = nome;
+		this.ataque = ataque;
+		this.defesa = defesa;
+		this.foto = foto;
+		this.tipo = tipo;
+		this.atributo = atributo;
 	}
 
-	public byte[] getFoto() {
-		return Foto;
-	}
 
-	public void setFoto(byte[] foto) {
-		Foto = foto;
-	}
 
 	public int getCodigo() {
-		return Codigo;
+		return codigo;
 	}
 
 	public void setCodigo(int codigo) {
-		Codigo = codigo;
-	}
-
-	public TipoBEAN getTipo() {
-		return Tipo;
-	}
-
-	public void setTipo(TipoBEAN tipo) {
-		Tipo = tipo;
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 
 	public int getAtaque() {
-		return Ataque;
+		return ataque;
 	}
 
 	public void setAtaque(int ataque) {
-		Ataque = ataque;
+		this.ataque = ataque;
 	}
 
 	public int getDefesa() {
-		return Defesa;
+		return defesa;
 	}
 
 	public void setDefesa(int defesa) {
-		Defesa = defesa;
+		this.defesa = defesa;
+	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	public TipoBEAN getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoBEAN tipo) {
+		this.tipo = tipo;
 	}
 
 	public AtributoBEAN getAtributo() {
-		return Atributo;
+		return atributo;
 	}
 
 	public void setAtributo(AtributoBEAN atributo) {
-		Atributo = atributo;
+		this.atributo = atributo;
 	}
+	
 }

@@ -3,7 +3,7 @@ package br.edu.cefsa.ftt.teste;
 import java.sql.Connection;
 import java.util.Date;
 
-import br.com.cefsa.ftt.util.DbUtil;
+import br.edu.cefsa.ftt.util.DbUtil;
 
 public class TesteConexao {
 
