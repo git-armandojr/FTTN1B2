@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import br.edu.cefsa.ftt.bean.CartaBEAN;
 import br.edu.cefsa.ftt.util.DbUtil;
+import br.edu.cefsa.ftt.util.MyException;
 
 public class CartaDAO {
 	
@@ -37,4 +38,26 @@ public class CartaDAO {
             throw new ArithmeticException("CartaDao: addCarta: " + e.getMessage()); 
         }
     } //addCarta
+	
+	public void deleteCarta(CartaBEAN carta) throws MyException {
+        try {
+            
+        	PreparedStatement preparedStatement = connection
+                    .prepareStatement("DELETE FROM carta WHERE codigo=?");
+            
+            // Parameters start with 1
+            preparedStatement.setInt(1, carta.getCodigo());
+
+            int updates = preparedStatement.executeUpdate();
+            
+            if(updates == 0) {
+            	String message = "Código da carta " + carta.getCodigo() + " não encontrado!";
+            	
+            	throw new MyException(message);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } //deletePeople
 }
