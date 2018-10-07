@@ -12,7 +12,6 @@ import java.util.List;
 
 import br.edu.cefsa.ftt.bean.CartaBEAN;
 import br.edu.cefsa.ftt.bean.TipoBEAN;
-import br.edu.cefsa.ftt.ec.model.People;
 import br.edu.cefsa.ftt.util.DbUtil;
 import br.edu.cefsa.ftt.util.MyException;
 
@@ -34,7 +33,7 @@ public class CartaDAO {
             preparedStatement.setString(1, carta.getNome());
             preparedStatement.setInt(2, carta.getAtaque());
             preparedStatement.setInt(3, carta.getDefesa());
-            preparedStatement.setBinaryStream(4, carta.getFoto());
+            preparedStatement.setBlob(4, carta.getFoto());
             preparedStatement.setInt(5, carta.getTipo().getCodigo());
             preparedStatement.setInt(6, carta.getAtributo().getCodigo());            
             
@@ -123,11 +122,11 @@ public List<CartaBEAN> getAllPeoples() {
                 carta.setNome(rs.getString("nome"));
                 carta.setAtaque(rs.getInt("ataque"));
                 carta.setDefesa(rs.getInt("defesa"));
-                carta.setFoto(rs.getBlob("foto"));
+                carta.setFoto(rs.getBlob("foto"));    
                 
-                TipoBEAN tipo = new TipoBEAN();
+                TipoBEAN tipo = new TipoDAO().getTipoById(rs.getInt("tipo"));                
+                carta.setTipo(tipo);
                 
-                carta.setTipo(rs.getInt("tipo"));
                 carta.setGender(rs.getString("GENDER"));
                 carta.setPeriod(rs.getString("PERIOD"));
                 carta.setValuation(rs.getFloat("VALUATION"));
