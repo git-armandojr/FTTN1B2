@@ -2,6 +2,8 @@ package br.edu.cefsa.ftt.bean;
 
 import java.sql.Blob;
 
+import br.edu.cefsa.ftt.types.AtributoENUM;
+
 public class CartaBEAN {
 	
 	private int codigo;
@@ -10,7 +12,7 @@ public class CartaBEAN {
     private int defesa;
     private Blob foto; // Fotos são armazenadas no banco através de array de bytes.
     private TipoBEAN tipo; //Fará referência a uma outra tabela, categoriza a carta
-    private AtributoBEAN atributo; // Referenciado em outra tabela do banco
+    private AtributoENUM atributo; // Referenciado em outra tabela do banco
 	
     public CartaBEAN() {
 		super();
@@ -18,7 +20,7 @@ public class CartaBEAN {
 	}   
 
 	public CartaBEAN(int codigo, String nome, int ataque, int defesa, Blob foto, TipoBEAN tipo,
-			AtributoBEAN atributo) {
+			AtributoENUM atributo) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -80,11 +82,11 @@ public class CartaBEAN {
 		this.tipo = tipo;
 	}
 
-	public AtributoBEAN getAtributo() {
+	public AtributoENUM getAtributo() {
 		return atributo;
 	}
 
-	public void setAtributo(AtributoBEAN atributo) {
+	public void setAtributo(AtributoENUM atributo) {
 		this.atributo = atributo;
 	}
 	
