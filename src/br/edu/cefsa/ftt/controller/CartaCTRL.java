@@ -2,6 +2,7 @@ package br.edu.cefsa.ftt.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,8 @@ import com.google.gson.JsonObject;
 
 import br.edu.cefsa.ftt.bean.CartaBEAN;
 import br.edu.cefsa.ftt.dao.CartaDAO;
+import br.edu.cefsa.ftt.ec.dao.BrandDao;
+import br.edu.cefsa.ftt.ec.model.Brand;
 
 /**
  * Servlet implementation class CartaCTRL
@@ -93,8 +96,53 @@ public class CartaCTRL extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// TODO Métodos implementados com parâmetros string
+		CartaBEAN cartaBean = new CartaBEAN(
+				request.getParameter("codigo"),
+				request.getParameter("nome"),
+				request.getParameter("ataque"),
+				request.getParameter("defesa"),
+				request.getParameter("foto"),
+				request.getParameter("tipo"),
+				request.getParameter("atributo"));
+		
+		//System.out.print(cartaBean);
+		
+		CartaDAO cartaDao = new CartaDAO();
+		
+		String status = null;
+		String message = null;
+		String now = String.valueOf(new Date());
+		
+		try {
+			cartaDao.addCarta(cartaBean);
+		   
+		   status = "OK";
+		   message = "Carta cadastrada com sucesso!";
+		   
+		} catch (Exception e) {
+			status = "Error";
+			message = e.getMessage();
+			System.err.println(now +  " - Ops!! - " + message);
+			System.err.println(now +  " - Ops!! - " + cartaBean);
+			e.printStackTrace();
+		}
+		
+		response.setContentType("application/json"); //MIME Type
+		response.setCharacterEncoding("utf-8");
+		
+	    //create Json Object
+		JsonObject json = new JsonObject();
+
+		// put some value pairs into the JSON object .
+		
+		json.addProperty("Status", status);
+		json.addProperty("Message", message);
+		json.addProperty("Time", now);
+
+
+		response.getWriter().print(json.toString());
+        response.flushBuffer();
 	}
 
 	/**
@@ -102,6 +150,52 @@ public class CartaCTRL extends HttpServlet {
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		CartaBEAN cartaBean = new CartaBEAN(
+				request.getParameter("codigo"),
+				request.getParameter("nome"),
+				request.getParameter("ataque"),
+				request.getParameter("defesa"),
+				request.getParameter("foto"),
+				request.getParameter("tipo"),
+				request.getParameter("atributo"));
+		
+		//System.out.print(cartaBean);
+		
+		CartaDAO cartaDao = new CartaDAO();
+		
+		String status = null;
+		String message = null;
+		String now = String.valueOf(new Date());
+		
+		try {
+			cartaDao.updateCarta(cartaBean);
+		   
+			status = "OK";
+			message = "Carta atualizada!";
+		   
+		} catch (Exception e) {
+			status = "Error";
+			message = e.getMessage();
+			System.err.println(now +  " - Ops!! - " + message);
+			System.err.println(now +  " - Ops!! - " + cartaBean);
+			e.printStackTrace();
+		}
+		
+		response.setContentType("application/json"); //MIME Type
+		response.setCharacterEncoding("utf-8");
+		
+	    //create Json Object
+		JsonObject json = new JsonObject();
+
+		// put some value pairs into the JSON object .
+		
+		json.addProperty("Status", status);
+		json.addProperty("Message", message);
+		json.addProperty("Time", now);
+
+
+		response.getWriter().print(json.toString());
+        response.flushBuffer();
 	}
 
 	/**
