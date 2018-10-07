@@ -1,6 +1,6 @@
 package br.edu.cefsa.ftt.bean;
 
-import java.io.FileInputStream;
+import java.sql.Blob;
 
 public class CartaBEAN {
 	
@@ -8,7 +8,7 @@ public class CartaBEAN {
     private String nome;
     private int ataque;
     private int defesa;
-    private FileInputStream foto; // Fotos são armazenadas no banco através de array de bytes.
+    private Blob foto; // Fotos são armazenadas no banco através de array de bytes.
     private TipoBEAN tipo; //Fará referência a uma outra tabela, categoriza a carta
     private AtributoBEAN atributo; // Referenciado em outra tabela do banco
 	
@@ -17,7 +17,7 @@ public class CartaBEAN {
 		// TODO Auto-generated constructor stub
 	}   
 
-	public CartaBEAN(int codigo, String nome, int ataque, int defesa, FileInputStream foto, TipoBEAN tipo,
+	public CartaBEAN(int codigo, String nome, int ataque, int defesa, Blob foto, TipoBEAN tipo,
 			AtributoBEAN atributo) {
 		super();
 		this.codigo = codigo;
@@ -63,11 +63,11 @@ public class CartaBEAN {
 		this.defesa = defesa;
 	}
 
-	public FileInputStream getFoto() {
+	public Blob getFoto() {
 		return foto;
 	}	
 	
-	public void setFoto(FileInputStream foto) {
+	public void setFoto(Blob foto) {
 		this.foto = foto;
 	}
 	
