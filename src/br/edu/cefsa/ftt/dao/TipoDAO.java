@@ -1,12 +1,10 @@
 package br.edu.cefsa.ftt.dao;
-
 import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import br.edu.cefsa.ftt.bean.TipoBEAN;
 import br.edu.cefsa.ftt.util.DbUtil;
 
@@ -32,7 +30,6 @@ public class TipoDAO {
 		throw new SQLException(erro.getMessage());
 	}	
 	}
-
 	public static void Alterar(TipoBEAN tipo) throws SQLException{
 		String update = "update tipo set descricao = ? where id = ?";
 		PreparedStatement sql = connection.prepareStatement(update);
@@ -49,7 +46,6 @@ public class TipoDAO {
 	}
 	
 	public static ArrayList<TipoBEAN> Listar() throws SQLException{
-
 		String select = "select * from tipo";
 		PreparedStatement sql = connection.prepareStatement(select);
 		ResultSet Data = null;
@@ -74,7 +70,6 @@ public class TipoDAO {
 	}
 	
 	public static void Deletar(int id) throws SQLException {
-
 		String delete ="delete from tipo where id = ?";
 		PreparedStatement sql = connection.prepareStatement(delete);
 		sql.setInt(1, id);
@@ -90,4 +85,3 @@ public class TipoDAO {
 	}
 	
 }
-
