@@ -1,7 +1,5 @@
 package br.edu.cefsa.ftt.dao;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +10,7 @@ import java.util.List;
 
 import br.edu.cefsa.ftt.bean.CartaBEAN;
 import br.edu.cefsa.ftt.bean.TipoBEAN;
+import br.edu.cefsa.ftt.types.AtributoENUM;
 import br.edu.cefsa.ftt.util.DbUtil;
 import br.edu.cefsa.ftt.util.MyException;
 
@@ -35,7 +34,7 @@ public class CartaDAO {
             preparedStatement.setInt(3, carta.getDefesa());
             preparedStatement.setBlob(4, carta.getFoto());
             preparedStatement.setInt(5, carta.getTipo().getCodigo());
-            preparedStatement.setInt(6, carta.getAtributo().getCodigo());            
+            preparedStatement.setString(6, carta.getAtributo().toString());            
             
             preparedStatement.executeUpdate();            
 
@@ -85,7 +84,7 @@ public class CartaDAO {
             preparedStatement.setInt(3, carta.getDefesa());
             preparedStatement.setBlob(4, carta.getFoto());
             preparedStatement.setInt(5, carta.getTipo().getCodigo());
-            preparedStatement.setInt(6, carta.getAtributo().getCodigo());             
+            preparedStatement.setString(6, carta.getAtributo().toString());             
             preparedStatement.setLong(7, carta.getCodigo());
             
             int updates = preparedStatement.executeUpdate();
@@ -101,7 +100,7 @@ public class CartaDAO {
         }
     } //updateCarta
 	
-public List<CartaBEAN> getAllPeoples() {
+public List<CartaBEAN> getAllPeoples() throws MyException {
         
     	List<CartaBEAN> cartas = new ArrayList<CartaBEAN>();
         
@@ -125,13 +124,11 @@ public List<CartaBEAN> getAllPeoples() {
                 carta.setFoto(rs.getBlob("foto"));    
                 
                 TipoBEAN tipo = new TipoDAO().getTipoById(rs.getInt("tipo"));                
-                carta.setTipo(tipo);
+                carta.setTipo(tipo);                
                 
-                carta.setGender(rs.getString("GENDER"));
-                carta.setPeriod(rs.getString("PERIOD"));
-                carta.setValuation(rs.getFloat("VALUATION"));
+                carta.setAtributo(AtributoENUM.valueOf(rs.getString("atributo")));
 
-                peoples.add(carta);
+                cartas.add(carta);
             }
             
             if (!found) {
@@ -144,6 +141,6 @@ public List<CartaBEAN> getAllPeoples() {
             e.printStackTrace();
         }
 
-        return peoples;
+        return cartas;
     } //getAllCartas
 }
