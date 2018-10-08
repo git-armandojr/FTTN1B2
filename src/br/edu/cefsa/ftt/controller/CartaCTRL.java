@@ -201,6 +201,47 @@ public class CartaCTRL extends HttpServlet {
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		CartaBEAN cartaBean = new CartaBEAN();
+		
+		cartaBean.setCodigo(request.getParameter("codigo"));
+		
+		CartaDAO cartaDao = new CartaDAO();
+		
+		//System.out.print(cartaBean);
+		
+		String status = null;
+		String message = null;
+		String now = String.valueOf(new Date());
+		
+		try {
+		   cartaDao.deleteCarta(cartaBean);
+		   
+		   status = "OK";
+		   message = "Carta removida!";
+		   now = String.valueOf(new Date());
+		   
+		} catch (Exception e) {
+			status = "Error";
+			message = e.getMessage();
+			System.err.println(now +  " - Ops!! - " + message);
+			System.err.println(now +  " - Ops!! - " + cartaBean);
+			e.printStackTrace();
+		}
+		
+		response.setContentType("application/json"); //MIME Type
+		response.setCharacterEncoding("utf-8");
+		
+	    //create Json Object
+		JsonObject json = new JsonObject();
+
+		// put some value pairs into the JSON object .
+		
+		json.addProperty("Status", status);
+		json.addProperty("Message", message);
+		json.addProperty("Time", now);
+
+		response.getWriter().print(json.toString());
+        response.flushBuffer();
 	}
 
 }
