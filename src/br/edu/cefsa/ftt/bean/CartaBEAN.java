@@ -1,6 +1,8 @@
 package br.edu.cefsa.ftt.bean;
 
-import java.io.FileInputStream;
+import java.sql.Blob;
+
+import br.edu.cefsa.ftt.types.AtributoENUM;
 
 public class CartaBEAN {
 	
@@ -8,17 +10,17 @@ public class CartaBEAN {
     private String nome;
     private int ataque;
     private int defesa;
-    private FileInputStream foto; // Fotos são armazenadas no banco através de array de bytes.
+    private Blob foto; // Fotos são armazenadas no banco através de array de bytes.
     private TipoBEAN tipo; //Fará referência a uma outra tabela, categoriza a carta
-    private AtributoBEAN atributo; // Referenciado em outra tabela do banco
+    private AtributoENUM atributo; // Referenciado em outra tabela do banco
 	
     public CartaBEAN() {
 		super();
 		// TODO Auto-generated constructor stub
 	}   
 
-	public CartaBEAN(int codigo, String nome, int ataque, int defesa, FileInputStream foto, TipoBEAN tipo,
-			AtributoBEAN atributo) {
+	public CartaBEAN(int codigo, String nome, int ataque, int defesa, Blob foto, TipoBEAN tipo,
+			AtributoENUM atributo) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -31,6 +33,11 @@ public class CartaBEAN {
 
 
 
+	public CartaBEAN(String codigo, String nome, String ataque, String defesa, String foto,
+			String tipo, String atributo) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -39,6 +46,13 @@ public class CartaBEAN {
 		this.codigo = codigo;
 	}
 
+	public void setCodigo(String codigo) {
+		if (codigo != null)
+		   this.codigo = Integer.valueOf(codigo);
+		else
+		   this.codigo = 0;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -54,6 +68,13 @@ public class CartaBEAN {
 	public void setAtaque(int ataque) {
 		this.ataque = ataque;
 	}
+	
+	public void setAtaque(String ataque) {
+		if (ataque != null)
+		   this.ataque = Integer.valueOf(ataque);
+		else
+		   this.ataque = 0;
+	}
 
 	public int getDefesa() {
 		return defesa;
@@ -62,12 +83,19 @@ public class CartaBEAN {
 	public void setDefesa(int defesa) {
 		this.defesa = defesa;
 	}
+	
+	public void setDefesa(String defesa) {
+		if (defesa != null)
+		   this.defesa = Integer.valueOf(defesa);
+		else
+		   this.defesa = 0;
+	}
 
-	public FileInputStream getFoto() {
+	public Blob getFoto() {
 		return foto;
 	}	
 	
-	public void setFoto(FileInputStream foto) {
+	public void setFoto(Blob foto) {
 		this.foto = foto;
 	}
 	
@@ -80,11 +108,11 @@ public class CartaBEAN {
 		this.tipo = tipo;
 	}
 
-	public AtributoBEAN getAtributo() {
+	public AtributoENUM getAtributo() {
 		return atributo;
 	}
 
-	public void setAtributo(AtributoBEAN atributo) {
+	public void setAtributo(AtributoENUM atributo) {
 		this.atributo = atributo;
 	}
 	
