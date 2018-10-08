@@ -32,7 +32,7 @@ public class CartaDAO {
             preparedStatement.setString(1, carta.getNome());
             preparedStatement.setInt(2, carta.getAtaque());
             preparedStatement.setInt(3, carta.getDefesa());
-            preparedStatement.setBlob(4, carta.getFoto());
+            preparedStatement.setString(4, carta.getFoto());
             preparedStatement.setInt(5, carta.getTipo().getCodigo());
             preparedStatement.setString(6, carta.getAtributo().toString());            
             
@@ -82,7 +82,7 @@ public class CartaDAO {
             preparedStatement.setString(1, carta.getNome());
             preparedStatement.setInt(2, carta.getAtaque());
             preparedStatement.setInt(3, carta.getDefesa());
-            preparedStatement.setBlob(4, carta.getFoto());
+            preparedStatement.setString(4, carta.getFoto());
             preparedStatement.setInt(5, carta.getTipo().getCodigo());
             preparedStatement.setString(6, carta.getAtributo().toString());             
             preparedStatement.setLong(7, carta.getCodigo());
@@ -121,7 +121,7 @@ public class CartaDAO {
                 carta.setNome(rs.getString("nome"));
                 carta.setAtaque(rs.getInt("ataque"));
                 carta.setDefesa(rs.getInt("defesa"));
-                carta.setFoto(rs.getBlob("foto"));    
+                carta.setFoto(rs.getString("foto"));    
                 
                 TipoBEAN tipo = new TipoDAO().getTipoById(rs.getInt("tipo"));                
                 carta.setTipo(tipo);                
@@ -165,7 +165,7 @@ public class CartaDAO {
                 carta.setNome(rs.getString("nome"));
                 carta.setAtaque(rs.getInt("ataque"));
                 carta.setDefesa(rs.getInt("defesa"));
-                carta.setFoto(rs.getBlob("foto"));    
+                carta.setFoto(rs.getString("foto"));    
                 
                 TipoBEAN tipo = new TipoDAO().getTipoById(rs.getInt("tipo"));                
                 carta.setTipo(tipo);                
@@ -178,5 +178,5 @@ public class CartaDAO {
         }
 
         return carta;
-    } //getPeopleById
+    } //getCartaById
 }

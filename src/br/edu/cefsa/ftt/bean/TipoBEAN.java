@@ -16,12 +16,26 @@ public class TipoBEAN {
 		this.descricao = descricao;
 	}
 
+	public TipoBEAN(String codigo, String descricao) {
+		setCodigo(codigo);
+		setDescricao(descricao);
+	}
+
 	public int getCodigo() {
 		return codigo;
 	}
+	
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+	
+	public void setCodigo(String codigo) {
+		if (codigo != null)
+		   this.codigo = Integer.valueOf(codigo);
+		else
+		   this.codigo = 0;
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
