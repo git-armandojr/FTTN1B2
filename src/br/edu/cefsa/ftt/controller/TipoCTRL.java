@@ -21,7 +21,7 @@ import br.edu.cefsa.ftt.dao.TipoDAO;
 /**
  * Servlet implementation class TipoCTRL
  */
-@WebServlet("/tipo")
+@WebServlet(name ="TipoCTRL", urlPatterns = {"/tipo"})
 public class TipoCTRL extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
