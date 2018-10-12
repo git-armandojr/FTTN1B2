@@ -2,33 +2,75 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tipo</title>
+<title>Cadastros</title>
+
+<style>
+
+html {
+	position:relative;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	}
+
+.menu {
+	position: absolute;
+	width: 300px;
+	}
+a {
+	text-decoration: none;
+	display: block;
+	width: 300px;
+	height: 38px;
+	border: 3px solid black;
+	font-size: 24px;
+	border-radius: 10px;
+	padding: 6px;
+}
+a:hover {
+	background-color: lightgray;
+	font-size: 27px;
+	}
+a:visited, :link {
+	color: black;
+}
+
+form {
+
+	width: 300px;
+	position: absolute;
+	margin-left: 500px;
+	
+}
+</style>
 </head>
 <body>
-	<form method="post" action="/FTTN1B2/tipo">
+<header>
+<h1><a href="index.html">..... Imagem menu principal </a></h1>
+<h1>Cadastro de tipos</h1>
+</header>
+<div class="menu">
+	<a href="carta.html">Cadastro de cartas</a>
+	<a href="tipo.html">Cadastro de tipos de cartas </a>
+	<a href="jogadores.html"> Cadastro de Jogadores</a>
+	<a href=""> Novos Cadastros 2 </a>
+</div>
+<form method="post" action="/FTTN1B2/tipo">
 		<fieldset>
-	    	<legend>Tipo</legend>
-	    	
+	    	<legend>Tipo</legend>    	
 	    	<p>
 				<label for="codigo">Código:</label>
 				<input id="codigo" name="codigo" type="number" disabled>
-			</p>
-			
+			</p>			
 			<p>
 				<label for="descricao">Descrição:</label>
 				<input id="descricao" name="descricao" type="text" required>
-			</p>
-				 		
+			</p>				 		
 	 		<p>
 				<input name="Reset" type="reset" required>
 				<input name="Submit" type="submit" required>
 			</p>
-			
-			<p>
-				<a href="https://www.w3schools.com/html/html_forms.asp" target="w3c">W3Schools Forms</a><br>
-				<a href="https://developer.mozilla.org/pt-BR/docs/Web/Guide/HTML/Forms/How_to_structure_an_HTML_form" target="mdn">MDN Forms</a>
-			</p>	
 		</fieldset>
-	</form>
+</form>
 </body>
 </html>

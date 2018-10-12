@@ -3,8 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Cartas</title>
+
 </head>
+<script>
+	
+</script>
 <body>
+	
+	<form>
+		<canvas ID="IMAGE" style="width: 150px; height: 240px; border: 3px solid black;">FOTO</canvas>
+		<script>
+			var ctx = document.getElementById('IMAGE').getContext('2d');
+			var img = new Image;
+			img.onload = function() {
+				ctx.drawImage(img, 20,20);
+				alert('image is created');
+			}
+			img.src=URL.createObjectURL(e.target.files[0]);		
+				
+		</script>
+		<p><input id='input_image' type="file"/></p>
+		<p><span>NOME DA CARTA:</span><input type="text" /></p>
+		<p><span>ATAQUE:</span><input type="text" /></p>
+		<p><span>DEFESA:</span><input type="text" /></p>
+		<span></span>
+		<span></span>
+	
+	</form>
 	
 </body>
 </html>
