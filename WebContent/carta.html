@@ -4,15 +4,63 @@
 <meta charset="UTF-8">
 <title>Cartas</title>
 
+<style>
+
+html {
+	position:relative;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	}
+
+.menu {
+	position: absolute;
+	width: 300px;
+	
+	}
+a {
+	text-decoration: none;
+	display: block;
+	width: 300px;
+	height: 38px;
+	border: 3px solid black;
+	font-size: 24px;
+	border-radius: 10px;
+	padding: 6px;
+}
+a:hover {
+	background-color: lightgray;
+	font-size: 27px;
+	}
+a:visited, :link {
+	color: black;
+}
+form {
+	position: absolute;
+	margin-left: 550px;
+
+}
+
+</style>
 </head>
 <script>
 	
 </script>
 <body onload="getAllAtributes()">
+<header>
+<h1><a href="index.html">..... Imagem menu principal </a></h1>
+<h1>Cadastrar novos recursos</h1>
+</header>
+<div class="menu">
+	<a href="carta.html">Cadastro de cartas</a>
+	<a href="tipo.html">Cadastro de tipos de cartas </a>
+	<a href="jogadores.html"> Cadastro de Jogadores</a>
+	<a href=""> Novos Cadastros 2 </a>
+</div>	
 	
-	<form method="post" action="/FTTN1B2/CartaCTRL">
+<form method="post" action="/FTTN1B2/carta">
 		<canvas ID="IMAGE" style="width: 190px; height: 303px; border: 3px solid black;">FOTO</canvas>
-		<p><input id="input_image" type="file" accept='image/*' required/></p>
+		<p><input name="foto" id="input_image" type="file" accept='image/*' required/></p>
 		<script>
 		//SCRIPT QUE INSERE A IMAGEM DENTRO DO CANVAS
 			var input_file = document.getElementById('input_image');
@@ -28,8 +76,13 @@
 				image.onload = function ()
 				{			
 					context.clearRect(0,0, canvas.width, canvas.height);
-					context.drawImage(image, 0,0, canvas.width, canvas.height);			
+					context.drawImage(image, 0,0, canvas.width, canvas.height);	
+					console.log(image);
+					
+					console.log('IGAO BURRIN KKKK');
+					console.log(canvas.toDataURL());
 				}
+				
 			});	
 			//FUNÇÃO PARA LIMPAR O CANVAS //
 			function clearCanvas() {
@@ -68,8 +121,8 @@
 		var XmlHttp = new XMLHttpRequest();
 		var json_atributos;
 			function getAllAtributes() {		
-				XmlHttp.open("GET", "/FTTN1B2/TipoCTRL", true);		
-				
+				XmlHttp.open("GET", "/FTTN1B2/AtributoCTRL", true);						
+				XmlHttp.send(null);
 				XmlHttp.onreadystatechange = function() {
 					if (XmlHttp.readyState == 4 && XmlHttp.status == 200){
 						
@@ -86,12 +139,12 @@
 					}
 				};			
 				
-				XmlHttp.send();		
+						
 			}	
 		</script>
-		<p><span>NOME:</span><input type="text" required/></p>
-		<p><span>ATAQUE:</span><input type="text" /></p>
-		<p><span>DEFESA:</span><input type="text" /></p>
+		<p><span>NOME:</span><input name="nome" type="text" required/></p>
+		<p><span>ATAQUE:</span><input name="ataque" type="text" /></p>
+		<p><span>DEFESA:</span><input name="defesa" type="text" /></p>
 		<!-- Tentar personalizar com esquema de estrelas -->
 		<p><span>LEVEL:</span>
 		<select id="level" required>
