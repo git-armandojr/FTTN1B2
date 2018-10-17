@@ -38,6 +38,7 @@ public class CartaCTRL extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	    
 	    String json = null;
@@ -95,6 +96,7 @@ public class CartaCTRL extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Métodos implementados com parâmetros string
+		request.setCharacterEncoding("UTF-8");
 		CartaBEAN cartaBean = new CartaBEAN(
 				request.getParameter("codigo"),
 				request.getParameter("nome"),
@@ -148,6 +150,7 @@ public class CartaCTRL extends HttpServlet {
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		CartaBEAN cartaBean = new CartaBEAN(
 				request.getParameter("codigo"),
 				request.getParameter("nome"),
