@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" class="h-100">
 <head>
-<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -53,8 +52,110 @@
 		<h1 class="mt-5 text-center">Carta</h1>
 		<form method="post" action="/FTTN1B2/carta">
 		
+      <form method="post" action="/FTTN1B2/carta">
+		<canvas ID="IMAGE" style="width: 190px; height: 303px; border: 3px solid black;">FOTO</canvas>
+		<p><input name="foto" id="input_image" type="file" accept='image/*' required/></p>
+		<script>
+		//SCRIPT QUE INSERE A IMAGEM DENTRO DO CANVAS
+			var input_file = document.getElementById('input_image');
+			var canvas = document.getElementById('IMAGE');
 			
-		</form>
+			var context = canvas.getContext('2d');
+			
+			input_file.addEventListener('change', function (e) {
+				var file = e.target.files[0];
+				var image = new Image();
+				image.src = URL.createObjectURL(file);
+				
+				image.onload = function ()
+				{			
+					context.clearRect(0,0, canvas.width, canvas.height);
+					context.drawImage(image, 0,0, canvas.width, canvas.height);	
+					input_file.setAttribute('src', canvas.toDataURL());
+				}
+				
+			});	
+			//FUNÇÃO PARA LIMPAR O CANVAS //
+			function clearCanvas() {
+				context.clearRect(0,0, canvas.width, canvas.height);
+			}
+			
+		</script>
+		<script type="text/javascript">
+		// SCRIPT QUE INSERE O ENUMERADOR DE ATRIBUTOS NO COMBOBOX		
+		var XmlHttp = new XMLHttpRequest();
+		var json_atributos;
+			function getAllAtributes() {		
+				XmlHttp.open("GET", "/FTTN1B2/AtributoCTRL", true);		
+				
+				XmlHttp.onreadystatechange = function() {
+					if (XmlHttp.readyState == 4 && XmlHttp.status == 200){
+						
+						json_atributos = JSON.parse(XmlHttp.response);
+						
+						var select = document.getElementById('atributos');
+						for (var i = 0; i < json_atributos.length; i ++) {
+							var option = document.createElement('option');
+							option.setAttribute("value", json_atributos[i]);
+							var txt = document.createTextNode(json_atributos[i]);
+							option.appendChild(txt);
+							select.insertBefore(option, select.lastChild);
+						}					
+					}
+				};			
+				
+				XmlHttp.send();		
+			}		
+		</script>
+		<script>
+		///////// RETORNA A LISTA DE TIPOS PARA PREENCHER O COMBOBOX /////////
+		var XmlHttp = new XMLHttpRequest();
+		var json_atributos;
+			function getAllAtributes() {		
+				XmlHttp.open("GET", "/FTTN1B2/AtributoCTRL", true);						
+				XmlHttp.send(null);
+				XmlHttp.onreadystatechange = function() {
+					if (XmlHttp.readyState == 4 && XmlHttp.status == 200){
+						
+						json_atributos = JSON.parse(XmlHttp.response);
+						
+						var select = document.getElementById('atributos');
+						for (var i = 0; i < json_atributos.length; i ++) {
+							var option = document.createElement('option');
+							option.setAttribute("value", json_atributos[i]);
+							var txt = document.createTextNode(json_atributos[i]);
+							option.appendChild(txt);
+							select.insertBefore(option, select.lastChild);
+						}					
+					}
+				};									
+			}	
+		</script>
+		<p><span>NOME:</span><input name="nome" type="text" required/></p>
+		<p><span>ATAQUE:</span><input name="ataque" type="text" /></p>
+		<p><span>DEFESA:</span><input name="defesa" type="text" /></p>
+		<!-- Tentar personalizar com esquema de estrelas -->
+		<p><span>LEVEL:</span>
+		<select id="level" required>
+			<option value=1>1</option>
+			<option value=2>2</option>
+			<option value=3>3</option>
+			<option value=4>4</option>
+			<option value=5>5</option>
+			<option value=6>6</option>
+			<option value=7>7</option>
+			<option value=8>8</option>
+			<option value=9>9</option>
+			<option value=10>10</option>
+		</select>
+		<p>
+			<span>ATRIBUTOS:</span>
+			<select id="atributos" required></select>
+		</p>
+		<p><input type="submit" VALUE="CADASTRAR"/><input type="reset" value="LIMPAR" onclick="clearCanvas()"/></p>
+		<span></span>
+		<span></span>	
+	</form>	
 	</div>
 	</main>
 
