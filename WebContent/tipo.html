@@ -1,34 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br" class="h-100">
 <head>
 <meta charset="UTF-8">
-<title>Tipo</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Tipo da Carta</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<!-- Estilos customizados para esse template -->
+<link href="css/sticky-footer-navbar.css" rel="stylesheet">
+<link href="css/floating-labels.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
+<script>
+	<script>
+
+	function loadJSON() {
+		var data_file = "http://http://localhost:8080/FTTN1B2/tipo";
+		var http_request = new XMLHttpRequest();
+		try {
+			// Opera 8.0+, Firefox, Chrome, Safari
+			http_request = new XMLHttpRequest();
+		} catch (e) {
+			// Internet Explorer Browsers
+			try {
+				http_request = new ActiveXObject("Msxml2.XMLHTTP");
+
+			} catch (e) {
+
+				try {
+					http_request = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+					// Something went wrong
+					alert("Your browser broke!");
+					return false;
+				}
+
+			}
+		}
+
+		http_request.onreadystatechange = function() {
+
+			if (http_request.readyState == 4) {
+				// Javascript function JSON.parse to parse JSON data
+				var jsonObj = JSON.parse(http_request.responseText);
+
+				// jsonObj variable now contains the data structure and can
+				// be accessed as jsonObj.name and jsonObj.country.
+				document.getElementById("codigo").innerHTML = jsonObj.name;
+				document.getElementById("descricao").innerHTML = jsonObj.country;
+			}
+		}
+
+		http_request.open("GET", data_file, true);
+		http_request.send();
+	}
+</script>
 </head>
 <body>
-	<form method="post" action="/FTTN1B2/tipo">
-		<fieldset>
-	    	<legend>Tipo</legend>
-	    	
-	    	<p>
-				<label for="codigo">Código:</label>
-				<input id="codigo" name="codigo" type="number" disabled>
-			</p>
-			
-			<p>
-				<label for="descricao">Descrição:</label>
-				<input id="descricao" name="descricao" type="text" required>
-			</p>
-				 		
-	 		<p>
-				<input name="Reset" type="reset" required>
-				<input name="Submit" type="submit" required>
-			</p>
-			
-			<p>
-				<a href="https://www.w3schools.com/html/html_forms.asp" target="w3c">W3Schools Forms</a><br>
-				<a href="https://developer.mozilla.org/pt-BR/docs/Web/Guide/HTML/Forms/How_to_structure_an_HTML_form" target="mdn">MDN Forms</a>
-			</p>	
-		</fieldset>
-	</form>
+	<!-- Navbar fixa -->
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand" href="#">YuGiOh!</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarCollapse" aria-controls="navbarCollapse"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Tipo<span
+						class="sr-only">(atual)</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="carta.html">Carta</a></li>
+				<li class="nav-item"><a class="nav-link disabled" href="#">Jogador</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- Começa o conteúdo da página -->
+	<main>
+	<div class="row">
+		<div class="col-1"></div>
+		<div class="col-3">
+			<h1 class="mt-5 text-center">Tipo da Carta</h1>
+			<form method="post" action="/FTTN1B2/tipo">
+
+				<div>
+					<label for="codigo">Código:</label> <input class="form-control"
+						id="codigo" name="codigo" type="number" disabled>
+				</div>
+
+				<div>
+					<label for="descricao">Descrição:</label> <input
+						class="form-control" id="descricao" name="descricao" type="text"
+						required>
+				</div>
+
+				<div>
+					<button class="btn btn-block" type="reset">Redefinir</button>
+					<button class="btn btn-primary btn-block" type="submit">Salvar</button>
+				</div>
+
+			</form>
+		</div>
+		<div class="col-8">
+			<table class="src">
+				<tr>
+					<th>Name</th>
+					<th>Country</th>
+				</tr>
+				<tr>
+					<td><div id="nome"></div></td>
+					<td><div id="descricao"></div></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	</main>
 </body>
 </html>

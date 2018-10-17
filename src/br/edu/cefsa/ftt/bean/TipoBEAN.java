@@ -20,6 +20,10 @@ public class TipoBEAN {
 		setCodigo(codigo);
 		setDescricao(descricao);
 	}
+	
+	public TipoBEAN(String descricao) {
+		setDescricao(descricao);
+	}
 
 	public int getCodigo() {
 		return codigo;
