@@ -15,15 +15,14 @@ import br.edu.cefsa.ftt.util.DbUtil;
 import br.edu.cefsa.ftt.util.MyException;
 
 public class CartaDAO {
-	
-	private Connection connection;
+
 	
 	public CartaDAO() {
-		connection = DbUtil.getConnection();
+		
 	}
 
 	public void addCarta(CartaBEAN carta) {
-        
+        Connection connection = DbUtil.getConnection();
     	try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("INSERT INTO carta (nome, ataque, defesa, foto, tipo, atributo) VALUES (?, ?, ?, ?, ?, ?)");
@@ -47,7 +46,7 @@ public class CartaDAO {
 	
 	public void deleteCarta(CartaBEAN carta) throws MyException {
         try {
-            
+            Connection connection = DbUtil.getConnection();
         	PreparedStatement preparedStatement = connection
                     .prepareStatement("DELETE FROM carta WHERE codigo=?");
             
@@ -69,6 +68,7 @@ public class CartaDAO {
 	
 	public void updateCarta(CartaBEAN carta) throws MyException {
         try {
+        	Connection connection = DbUtil.getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("UPDATE carta SET nome=?, " 
                     		                          + "ataque=?, " 
@@ -103,7 +103,7 @@ public class CartaDAO {
 	public List<CartaBEAN> getAllCartas() throws MyException {
         
     	List<CartaBEAN> cartas = new ArrayList<CartaBEAN>();
-        
+    	Connection connection = DbUtil.getConnection();
         try {
             Statement statement = connection.createStatement();
             
@@ -147,7 +147,7 @@ public class CartaDAO {
 	public CartaBEAN getCartaById(int codigo) throws MyException {
 
 		CartaBEAN carta = new CartaBEAN();
-        
+		Connection connection = DbUtil.getConnection();
     	try {
             PreparedStatement preparedStatement = connection.
                     prepareStatement("SELECT * FROM PEOPLE WHERE ID=?");

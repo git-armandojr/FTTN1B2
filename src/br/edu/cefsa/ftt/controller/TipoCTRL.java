@@ -108,8 +108,7 @@ public class TipoCTRL extends HttpServlet {
 		String now = String.valueOf(new Date());
 		
 		try {
-			tipoDao.addTipo(tipoBean);
-		   
+			tipoDao.addTipo(tipoBean);		   
 			status = "OK";
 			message = "Tipo cadastrado com sucesso!";
 		   

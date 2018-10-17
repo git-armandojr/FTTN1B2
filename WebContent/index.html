@@ -13,41 +13,47 @@ html {
 	border: none;
 	}
 
-.menu {
-	position: absolute;
-	width: 300px;
-	}
-a {
-	text-decoration: none;
-	display: block;
-	width: 300px;
-	height: 38px;
-	border: 3px solid black;
-	font-size: 24px;
-	border-radius: 10px;
-	padding: 6px;
-}
-a:hover {
-	background-color: lightgray;
-	font-size: 27px;
-	}
-a:visited, :link {
-	color: black;
+body {
+	margin: 0;
+	width: 600px;
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0%) 
 }
 
+#header {
+	margin-top: 33px;
+	margin-bottom: 33px;
+}
+.menu a {
+	text-decoration: none;
+	display: block;
+	width: 200px;
+	height: 300px;
+	float: left;
+	font-size: 24px;
+	border-radius: 10px;
+}
+.menu img:hover {
+	width: 214px;
+}
+.menu a:visited, :link {
+	color: black;
+}
+span {
+	text-align: center;
+	margin-left: 25px;
+}
 
 </style>
 </head>
 <body>
-<header>
-<h1><a href="index.html">..... Imagem menu principal </a></h1>
-<h1>Cadastrar novos recursos</h1>
-</header>
+<a href="index.html"><img id="header" src="WEB-INF/images/home_logo.jpg" width="600px"/></a>
 <div class="menu">
-	<a href="carta.html">Cadastro de cartas</a>
-	<a href="tipo.html">Cadastro de tipos de cartas </a>
-	<a href="jogadores.html"> Cadastro de Jogadores</a>
-	<a href=""> Novos Cadastros 2 </a>
+	<a href="carta.html"><img src="WEB-INF/images/new2.jpg" width="190px"/><span>NOVA CARTA</span></a>
+	<a href="tipo.html"><img src="WEB-INF/images/tipo.jpg" width="180px" style="z-index: 10; position: relative"/><span>NOVOS TIPO</span></a>
+	<a href="jogadores.html"><img src="WEB-INF/images/players.jpg" width="180px"/><span>NOVOS JOGADORES</span></a>
 </div>
 
 </body>
