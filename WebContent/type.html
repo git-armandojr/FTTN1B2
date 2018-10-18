@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Type</title>
+</head>
+<body>
+
+<div id="demo"></div>
+
+<script>
+var url = "http://localhost:8080/FTTN1B2/tipo";
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var tipos = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = `<table>
+        <tr>
+        	<th>Código</th>
+        	<th>Descrição</th>
+        </tr>
+        ${tipos.map(function(tipo){
+        	return `<tr>
+        		<td>${tipo.codigo}</td>
+        		<td>${tipo.descricao}</td>
+        		<td>Excluir</td>
+        	</tr>`;
+        	}).join('')
+        }
+        </table>`;
+    }
+};
+</script>
+</body>
+</html>

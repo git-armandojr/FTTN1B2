@@ -26,48 +26,29 @@
 	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
 <script>
-	<script>
-
-	function loadJSON() {
-		var data_file = "http://http://localhost:8080/FTTN1B2/tipo";
-		var http_request = new XMLHttpRequest();
-		try {
-			// Opera 8.0+, Firefox, Chrome, Safari
-			http_request = new XMLHttpRequest();
-		} catch (e) {
-			// Internet Explorer Browsers
-			try {
-				http_request = new ActiveXObject("Msxml2.XMLHTTP");
-
-			} catch (e) {
-
-				try {
-					http_request = new ActiveXObject("Microsoft.XMLHTTP");
-				} catch (e) {
-					// Something went wrong
-					alert("Your browser broke!");
-					return false;
-				}
-
-			}
-		}
-
-		http_request.onreadystatechange = function() {
-
-			if (http_request.readyState == 4) {
-				// Javascript function JSON.parse to parse JSON data
-				var jsonObj = JSON.parse(http_request.responseText);
-
-				// jsonObj variable now contains the data structure and can
-				// be accessed as jsonObj.name and jsonObj.country.
-				document.getElementById("codigo").innerHTML = jsonObj.name;
-				document.getElementById("descricao").innerHTML = jsonObj.country;
-			}
-		}
-
-		http_request.open("GET", data_file, true);
-		http_request.send();
-	}
+var url = "http://localhost:8080/FTTN1B2/tipo";
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var tipos = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = `<table>
+        <tr>
+        	<th>Código</th>
+        	<th>Descrição</th>
+        </tr>
+        ${tipos.map(function(tipo){
+        	return `<tr>
+        		<td>${tipo.codigo}</td>
+        		<td>${tipo.descricao}</td>
+        		<td>Excluir</td>
+        	</tr>`;
+        	}).join('')
+        }
+        </table>`;
+    }
+};
 </script>
 </head>
 <body>
@@ -116,20 +97,10 @@
 
 			</form>
 		</div>
-		<div class="col-8">
-			<table class="src">
-				<tr>
-					<th>Name</th>
-					<th>Country</th>
-				</tr>
-				<tr>
-					<td><div id="nome"></div></td>
-					<td><div id="descricao"></div></td>
-				</tr>
-			</table>
+		<div class="col-8 mt-5">
+    		<div id="demo"></div>
 		</div>
 	</div>
-
 	</main>
 </body>
 </html>
